@@ -9,9 +9,9 @@ nnoremap <buffer> <expr> <Leader>cc g:MakeCmd('python', 1) . g:esc_term . g:move
 nnoremap <buffer> <expr> <Leader>cs g:MakeCmd('ipython', 0) . g:esc_term . g:move_left
 nnoremap <buffer> <expr> <Leader>cq g:MakeCmd('quit', 0) . g:esc_term . g:move_left
 
-"nnoremap <buffer> <expr> <Leader>cr ":w\<CR>\<C-w>\<C-l>a%run " . expand('%:r')
 nnoremap <buffer> <expr> <Leader>cr g:MakeCmd('%run', 2) . g:esc_term . g:move_left
-vnoremap <buffer>        <Leader>cr y<CR><C-w><C-l>pa<CR><CR>
+vnoremap <buffer>        <Leader>cr y<CR><C-w><C-l>pa<CR><CR><C-\><C-n><C-w>h
+nnoremap <buffer>        <Leader>cl <S-v>y<CR><C-w><C-l>pa<CR><CR><C-\><C-n><C-w>h
 
 nnoremap <buffer> <Leader>cp :w<CR><C-w><C-l>apython<CR>
 nnoremap <buffer> <Leader>ci :w<CR><C-w><C-l>aC:\Users\swack\Anaconda3\Scripts\activate<CR><Esc>

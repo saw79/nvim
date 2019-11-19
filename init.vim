@@ -93,7 +93,7 @@ nnoremap <Leader>id <S-v><C-x>
 " --------------------------- TERMINAL -----------------------------------
 
 " Clear terminal
-nnoremap <Leader>cl <C-w>lacls<CR><C-\><C-n><C-w>h
+"nnoremap <Leader>cl <C-w>lacls<CR><C-\><C-n><C-w>h
 " Open right
 nnoremap <C-Right> :vsp<CR><C-w><C-l>:term<CR><C-w><C-h>
 " Open down
