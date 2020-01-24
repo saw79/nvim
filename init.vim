@@ -2,6 +2,7 @@
 
 call plug#begin()
 Plug 'morhetz/gruvbox'
+"Plug 'arcticicestudio/nord-vim'
 Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
@@ -10,6 +11,7 @@ call plug#end()
 "syntax enable
 "colorscheme desert
 colorscheme gruvbox
+"colorscheme nord
 set background=dark
 
 set number
