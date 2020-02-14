@@ -17,9 +17,9 @@ set background=dark
 set number
 set relativenumber
 
-set tabstop=4 " makes tab size = 4
+set tabstop=2 " tab size
 set expandtab " inserts spaces when tab is pressed
-set shiftwidth=4 " makes indenting = tabbing
+set shiftwidth=2 " indent size
 
 set hlsearch
 set cursorline
