@@ -38,6 +38,11 @@ nnoremap <Leader>bb :w<CR>:b#<CR>
 nnoremap <Leader>ch :noh<CR>
 nnoremap <Leader>cde :cd %:h<CR>
 
+" Edit vimrc
+nnoremap <Leader>ei :e $MYVIMRC<CR>
+" Edit ftplugins
+nnoremap <Leader>ef :e ~/.config/nvim/ftplugin/
+
 " --------------------------- BASIC EDITING -----------------------------------
 
 " Easier macros
