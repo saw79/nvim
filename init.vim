@@ -53,8 +53,8 @@ nnoremap <Leader>rl :s/
 nnoremap <Leader>rf :%s/
 
 " increment/decrement
-nnoremap <Leader>+ <S-v><C-a>
-nnoremap <Leader>- <S-v><C-x>
+nnoremap <Leader>+ mz<S-v><C-a>`z
+nnoremap <Leader>- mz<S-v><C-x>`z
 
 " My surround functions
 function! GetLChar(ch)
