@@ -27,7 +27,7 @@ set cursorline
 nnoremap <Space> <nop>
 let mapleader = " "
 
-" --------------------------- BASIC -----------------------------------
+" --------------------------- NAVIGATION -----------------------------------
 
 inoremap jk <Esc>
 
@@ -51,6 +51,10 @@ nnoremap Q @q
 nnoremap <Leader>rl :s/
 " Replace in file
 nnoremap <Leader>rf :%s/
+
+" increment/decrement
+nnoremap <Leader>+ <S-v><C-a>
+nnoremap <Leader>- <S-v><C-x>
 
 " My surround functions
 function! GetLChar(ch)
@@ -93,9 +97,6 @@ function! SurroundSelection(ch)
 endfunction
 nnoremap <expr> <Leader>ss SurroundWord(input(''))
 vnoremap <expr> <Leader>ss SurroundSelection(input(''))
-
-nnoremap <Leader>ii <S-v><C-a>
-nnoremap <Leader>id <S-v><C-x>
 
 " --------------------------- TERMINAL -----------------------------------
 
