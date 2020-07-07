@@ -1,6 +1,6 @@
-set tabstop=4
-set expandtab
-set shiftwidth=4
+setlocal tabstop=4
+setlocal expandtab
+setlocal shiftwidth=4
 
 nnoremap <buffer> <Leader>kk I#<Esc>j
 nnoremap <buffer> <Leader>jj ^xj
