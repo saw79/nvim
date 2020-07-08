@@ -3,7 +3,7 @@
 call plug#begin()
 Plug 'morhetz/gruvbox'
 "Plug 'arcticicestudio/nord-vim'
-Plug 'JuliaEditorSupport/julia-vim'
+"Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
 " --------------------------- CORE -----------------------------------
@@ -153,18 +153,21 @@ let move_down = "\<C-w>\<C-j>"
 " Run main executable
 nnoremap <expr> <Leader>rr MakeCmd('./main', 0) .esc_term . move_left
 
+" Repeat last terminal command
 nnoremap <Leader><Leader> :w<CR><C-w>la<Up><CR><C-\><C-n><C-w>h
 
-nnoremap <Leader>uu :call LaTeXtoUnicode#Toggle()<CR>
+"nnoremap <Leader>uu :call LaTeXtoUnicode#Toggle()<CR>
 
-function! ToggleCheck()
-    if getline(".")[0:4] == "- [ ]"
-        execute "normal! mz0v4lc- [x]\<Esc>`z"
-    elseif getline(".")[0:4] == "- [x]"
-        execute "normal! mz0v4lc- [ ]\<Esc>`z"
-    else
-        echo "none"
-    endif
-endfunction
-nnoremap <Leader>tc :call ToggleCheck()<CR>
+"function! ToggleCheck()
+    "if getline(".")[0:4] == "- [ ]"
+        "execute "normal! mz0v4lc- [x]\<Esc>`z"
+    "elseif getline(".")[0:4] == "- [x]"
+        "execute "normal! mz0v4lc- [ ]\<Esc>`z"
+    "else
+        "echo "none"
+    "endif
+"endfunction
+"nnoremap <Leader>tc :call ToggleCheck()<CR>
+
+au BufNewFile,BufRead *.jl set filetype=julia
 
