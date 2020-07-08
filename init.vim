@@ -29,8 +29,6 @@ let mapleader = " "
 
 " --------------------------- NAVIGATION -----------------------------------
 
-inoremap jk <Esc>
-
 nnoremap <Leader>bl :w<CR>:ls<CR>:b 
 nnoremap <Leader>BL :ls<CR>:b
 nnoremap <Leader>bb :w<CR>:b#<CR>
