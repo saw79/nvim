@@ -1,3 +1,7 @@
+set tabstop=4
+set expandtab
+set shiftwidth=4
+
 nnoremap <buffer> <Leader>kk I#<Esc>j
 nnoremap <buffer> <Leader>jj ^xj
 
