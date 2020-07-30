@@ -1,8 +1,10 @@
 " --------------------------- PLUGINS -----------------------------------
 
 call plug#begin()
+" Colorschemes
 Plug 'morhetz/gruvbox'
-"Plug 'arcticicestudio/nord-vim'
+Plug 'sheerun/vim-wombat-scheme'
+
 "Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
@@ -10,8 +12,8 @@ call plug#end()
 
 "syntax enable
 "colorscheme desert
-colorscheme gruvbox
-"colorscheme nord
+"colorscheme gruvbox
+colorscheme wombat
 set background=dark
 
 set number
