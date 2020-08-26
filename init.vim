@@ -5,6 +5,8 @@ call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-wombat-scheme'
 
+Plug 'neovim/nvim-lsp'
+
 "Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
@@ -170,4 +172,13 @@ nnoremap <Leader><Leader> :w<CR><C-w>la<Up><CR><C-\><C-n><C-w>h
 "nnoremap <Leader>tc :call ToggleCheck()<CR>
 
 au BufNewFile,BufRead *.jl set filetype=julia
+au BufNewFile,BufRead *.hx set filetype=java
 
+" --------------------------- LSP -----------------------------------
+
+:lua << END
+require'nvim_lsp'.vimls.setup{}
+require'nvim_lsp'.tsserver.setup{}
+--require'nvim_lsp'.rust_analyzer.setup{}
+--require'nvim_lsp'.pyls.setup{}
+END
