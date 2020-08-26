@@ -6,6 +6,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-wombat-scheme'
 
 Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/completion-nvim'
 
 "Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
@@ -176,9 +177,15 @@ au BufNewFile,BufRead *.hx set filetype=java
 
 " --------------------------- LSP -----------------------------------
 
-:lua << END
+lua << END
 require'nvim_lsp'.vimls.setup{}
 require'nvim_lsp'.tsserver.setup{}
+require'nvim_lsp'.pyls.setup{on_attach=require'completion'.on_attach}
 --require'nvim_lsp'.rust_analyzer.setup{}
---require'nvim_lsp'.pyls.setup{}
 END
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
