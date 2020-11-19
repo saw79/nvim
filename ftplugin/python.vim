@@ -20,6 +20,6 @@ nnoremap <buffer>        <Leader>cl <S-v>y<CR><C-w><C-l>pa<CR><CR><C-\><C-n><C-w
 nnoremap <buffer> <Leader>cp :w<CR><C-w><C-l>apython<CR>
 nnoremap <buffer> <Leader>ci :w<CR><C-w><C-l>aC:\Users\swack\Anaconda3\Scripts\activate<CR><Esc>
 
-nnoremap <buffer> <Leader>do oimport pdb; pdb.set_trace()<Esc>
-nnoremap <buffer> <Leader>dO Oimport pdb; pdb.set_trace()<Esc>
+nnoremap <buffer> <Leader>do obreakpoint()<Esc>
+nnoremap <buffer> <Leader>dO Obreakpoint()<Esc>
 

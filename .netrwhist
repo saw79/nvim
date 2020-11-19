@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/swacks/projects/slam/cpp_version/build'
 let g:netrw_dirhist_4='/home/swacks/poker'
 let g:netrw_dirhist_3='/home/swacks/projects/people_counting/automl/efficientdet/savedmodeldir'
 let g:netrw_dirhist_2='/home/swacks/projects/ml_infrastructure/test/__pycache__'
