@@ -5,8 +5,9 @@ call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-wombat-scheme'
 
-Plug 'neovim/nvim-lsp'
-Plug 'nvim-lua/completion-nvim'
+Plug 'neovim/nvim-lspconfig'
+"Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 
 "Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
@@ -32,6 +33,13 @@ set cursorline
 nnoremap <Space> <nop>
 let mapleader = " "
 
+" --------------------------- PREFIX NOTES -----------------------------------
+"  b: buffer
+"  c: 'change' (e.g., change directory, also code/compile)
+"  e: edit (e.g., edit init.vim)
+"  r: replace
+"  s: surround
+"  t: terminal
 " --------------------------- NAVIGATION -----------------------------------
 
 nnoremap <Leader>bl :w<CR>:ls<CR>:b 
@@ -107,8 +115,10 @@ vnoremap <expr> <Leader>ss SurroundSelection(input(''))
 "nnoremap <Leader>cl <C-w>lacls<CR><C-\><C-n><C-w>h
 " Open right
 nnoremap <C-Right> :vsp<CR><C-w><C-l>:term<CR><C-w><C-h>
+nnoremap <Leader>tr :vsp<CR><C-w><C-l>:term<CR><C-w><C-h>
 " Open down
 nnoremap <C-Down> :sp<CR><C-w><C-j>:term<CR><C-w><C-k>
+nnoremap <Leader>td :sp<CR><C-w><C-j>:term<CR><C-w><C-k>
 
 " Movement
 nnoremap <C-h> <C-w><C-h>
@@ -125,7 +135,7 @@ nnoremap <C-q> <C-w><C-l>a<C-c><C-\><C-n><C-w><C-h>
 nnoremap <Leader>ll <C-w><C-l>a<C-\><C-n><C-w><C-h>
 
 " Change terminal directory to current vim file
-nnoremap <expr> <Leader>cdt move_right."acd ".expand('%:p:h')."\<CR>".esc_term.move_left
+nnoremap <expr> <Leader>cdt move_right."acd \"".expand('%:p:h')."\"\<CR>".esc_term.move_left
 
 " Input parameters
 " ================
@@ -173,24 +183,31 @@ nnoremap <Leader><Leader> :w<CR><C-w>la<Up><CR><C-\><C-n><C-w>h
 "nnoremap <Leader>tc :call ToggleCheck()<CR>
 
 au BufNewFile,BufRead *.jl set filetype=julia
-au BufNewFile,BufRead *.hx set filetype=java
+au BufNewFile,BufRead *.nim set filetype=nim
+
+augroup nim_syn
+  au!
+  autocmd BufNewFile,BufRead *.nim set syntax=python
+augroup END
 
 " --------------------------- LSP -----------------------------------
 
 lua << END
---require'nvim_lsp'.vimls.setup{}
-require'nvim_lsp'.tsserver.setup{}
-require'nvim_lsp'.pyls.setup{
-  on_attach=require'completion'.on_attach
-  }
-require'nvim_lsp'.rust_analyzer.setup{
-  on_attach=require'completion'.on_attach
-  }
-require'nvim_lsp'.clangd.setup{
-  on_attach=require'completion'.on_attach,
-  filetypes = {"c", "cpp", "h", "hpp"}
-  }
+require'lspconfig'.pyls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
 END
+"require'lspconfig'.vimls.setup{}
+"require'lspconfig'.pyls.setup{
+  "on_attach=require'completion'.on_attach
+  "}
+"require'lspconfig'.rust_analyzer.setup{
+  "on_attach=require'completion'.on_attach
+  "}
+"require'lspconfig'.tsserver.setup{}
+"require'lspconfig'.clangd.setup{
+  "on_attach=require'completion'.on_attach,
+  "filetypes = {"c", "cpp", "h", "hpp"}
+  "}
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <Leader>K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -205,5 +222,27 @@ nnoremap <silent> <Leader>gc    <cmd>lua vim.lsp.buf.declaration()<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
+"set completeopt=menuone,noinsert,noselect
+"set shortmess+=c
+
+set completeopt=menu,menuone,noselect
+
+lua << EOF
+require'compe'.setup {
+  enabled = true,
+  debug = false,
+  min_length = 1,
+  preselect = 'enable', -- 'enable' || 'disable' || 'always',
+  throttle_time = 80,
+  source_timeout = 200,
+  incomplete_delay = 400,
+  allow_prefix_unmatch = true,
+
+  source = {
+    path = true,
+    buffer = true,
+    vsnip = false,
+    nvim_lsp = true,
+  }
+}
+EOF

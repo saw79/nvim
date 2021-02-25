@@ -1,7 +1,12 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhistcnt =5
-let g:netrw_dirhist_5='/home/swacks/projects/slam/cpp_version/build'
-let g:netrw_dirhist_4='/home/swacks/poker'
-let g:netrw_dirhist_3='/home/swacks/projects/people_counting/automl/efficientdet/savedmodeldir'
-let g:netrw_dirhist_2='/home/swacks/projects/ml_infrastructure/test/__pycache__'
-let g:netrw_dirhist_1='/home/swacks/projects/ml_infrastructure'
+let g:netrw_dirhist_5='scp://aws/coco_image_creator/'
+let g:netrw_dirhist_4='scp://aws/'
+let g:netrw_dirhist_3='scp://aws/coco_image_creator/'
+let g:netrw_dirhist_2='scp://aws/'
+let g:netrw_dirhist_1='scp://aws/CEPDOF/'
+let g:netrw_dirhist_0='scp://aws/'
+let g:netrw_dirhist_9='/Users/swacks/Documents/People Counting/aws'
+let g:netrw_dirhist_8='/Users/swacks/Analog Devices, Inc/Motion Sensing Garment - Documents/Data'
+let g:netrw_dirhist_7='/Users/swacks/projects/msg/smart_garment/visualization'
+let g:netrw_dirhist_6='/Users/swacks/dense_slam/data'
