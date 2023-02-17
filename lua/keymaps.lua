@@ -28,9 +28,9 @@ vim.g.maplocalleader = " "
 --nnoremap Q @q -- @@ is now DEFAULT!
 
 -- Replace in line
-keymap("n", "<leader>rl", ":s/", opts)
+keymap("n", "<leader>rl", ":s/", { noremap = true })
 -- Replace in file
-keymap("n", "<leader>rf", ":%s/", opts)
+keymap("n", "<leader>rf", ":%s/", { noremap = true })
 
 -- increment/decrement
 keymap("n", "<leader>=", "mz<S-v><C-a>`z", opts)
@@ -38,6 +38,9 @@ keymap("n", "<leader>-", "mz<S-v><C-x>`z", opts)
 
 -- misc
 keymap("n", "<leader>ch", ":noh<cr>", opts)
+
+keymap("n", "<leader>ei", ":e ~/.config/nvim/", { noremap = true })
+keymap("n", "<leader>en", ":e ~/notes.md<cr>", opts)
 
 --------------------------------------------------------------------------------
 -- Navigation
@@ -60,7 +63,7 @@ vim.keymap.set(
   expr_opts)
 
 -- file explorer
-keymap("n", "<leader>e", ":Lex 20<cr>", opts)
+keymap("n", "<leader>ex", ":Lex 20<cr>", opts)
 
 -- buffer navigation
 keymap("n", "<leader>bl", ":w<cr>:ls<cr>:b ", opts)
@@ -81,8 +84,3 @@ keymap("t", "<C-h>", t_esc..t_mv_h, opts)
 keymap("t", "<C-j>", t_esc..t_mv_j, opts)
 keymap("t", "<C-k>", t_esc..t_mv_k, opts)
 keymap("t", "<C-l>", t_esc..t_mv_l, opts)
-
--- terminal creation/manipulation
--- (see code.lua for sending code)
-keymap("n", "<leader>to", ":vsp<cr>:term<cr>"..t_mv_h, opts)
-keymap("n", "<leader>tt", t_mv_l.."a"..t_esc..t_mv_h, opts)

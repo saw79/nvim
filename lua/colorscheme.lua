@@ -19,3 +19,6 @@ if not status then
   vim.notify("WARNING - colorscheme '" .. colorscheme .. "' not found, using default")
   vim.cmd("colorscheme " .. colorscheme_default)
 end
+
+-- guibg=#123456 for 24-bit mode
+vim.cmd("hi MatchParen ctermbg=240")

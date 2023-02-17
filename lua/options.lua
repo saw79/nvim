@@ -21,3 +21,5 @@ vim.opt.splitright = true
 -- popup  menu height (default=0)
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.pumheight = 10
+
+vim.api.nvim_command("autocmd VimResized * wincmd =")
