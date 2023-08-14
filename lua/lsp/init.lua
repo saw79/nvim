@@ -11,7 +11,10 @@ local function on_attach(_, bufnr)
   --settings.set_highlighting(client)
 end
 
-lspconfig["sumneko_lua"].setup{
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+lspconfig.lua_ls.setup{
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -28,21 +31,19 @@ lspconfig["sumneko_lua"].setup{
   },
 }
 
---[[
-lspconfig["pyright"].setup{
+lspconfig.pyright.setup{
   on_attach = on_attach,
   settings = {
     python = {
       analysis = {
         autoImportCompletions = false,
+        --diagnosticMode = "workspace",
+        typeCheckingMode = "off",
       }
     }
   }
 }
---]]
 
-lspconfig["pylsp"].setup{
-  on_attach = on_attach,
-}
+lspconfig.rust_analyzer.setup {}
 
 settings.set_options()
