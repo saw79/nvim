@@ -58,6 +58,9 @@ return packer.startup(function(use)
   use "mhartington/oceanic-next"
   use "sainnhe/sonokai"
 
+  -- visual
+  use "lukas-reineke/indent-blankline.nvim"
+
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-buffer"

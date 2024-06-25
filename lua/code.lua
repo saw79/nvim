@@ -49,7 +49,15 @@ local function open_terminal()
   --vim.g.term_chan_id = buf
   --print("Terminal Channel ID saved as:", vim.g.term_chan_id)
 
+  -- go back to left split
   vim.cmd('execute \"normal \\<c-w>h\"')
+end
+
+local function start_tensorboard()
+  vim.cmd("sp")
+  vim.cmd("term")
+  vim.cmd('execute \"normal \\<c-w>20-\"')
+  --vim.cmd('execute \"normal atensorboard --logdir output/\"')
 end
 
 ----------------------------- terminal -----------------------------
@@ -64,6 +72,7 @@ end
 --keymap("n", "<leader>to", ":vsp<cr>:term<cr>" .. to_buff)
 vim.keymap.set("n", "<leader>to", open_terminal, {})
 keymap("<leader>tt", to_term .. "a" .. esc .. to_buff)
+vim.keymap.set("n", "<leader>tb", start_tensorboard, {})
 
 ----------------------------- running code -----------------------------
 -------------- CORE --------------
