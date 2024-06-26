@@ -1,10 +1,10 @@
 local colorscheme_default = "default"
 --local colorscheme_desired = "sonokai"
 --local colorscheme_desired = "oceanicnext"
---local colorscheme_desired = "kanagawa"
 --local colorscheme_desired = "catppuccin"
 --local colorscheme_desired = "nightfox"
-local colorscheme_desired = "carbonfox"
+--local colorscheme_desired = "carbonfox"
+local colorscheme_desired = "kanagawa"
 
 ------------------------------------------------------------------------------------------
 
