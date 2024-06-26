@@ -57,6 +57,9 @@ return packer.startup(function(use)
   -- colorschemes
   use "mhartington/oceanic-next"
   use "sainnhe/sonokai"
+  use "catppuccin/nvim"
+  use "rebelot/kanagawa.nvim"
+  use "EdenEast/nightfox.nvim"
 
   -- visual
   use "lukas-reineke/indent-blankline.nvim"

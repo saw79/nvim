@@ -1,18 +1,14 @@
-local colorscheme_24b = "sonokai"
-local colorscheme_256 = "sonokai"
---local colorscheme_256 = "oceanicnext"
 local colorscheme_default = "default"
+--local colorscheme_desired = "sonokai"
+--local colorscheme_desired = "oceanicnext"
+--local colorscheme_desired = "kanagawa"
+--local colorscheme_desired = "catppuccin"
+--local colorscheme_desired = "nightfox"
+local colorscheme_desired = "carbonfox"
 
 ------------------------------------------------------------------------------------------
 
-local colorscheme = colorscheme_default
-if vim.fn.has("gui_vimr") > 0 then
-  -- print("Using VimR - enabling 24-bit colorscheme")
-  colorscheme = colorscheme_24b
-else
-  -- print("Using terminal neovim - enabling 256 color colorscheme")
-  colorscheme = colorscheme_256
-end
+local colorscheme = colorscheme_desired
 
 local status, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status then
