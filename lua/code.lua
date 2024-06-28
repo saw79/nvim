@@ -90,3 +90,18 @@ keymap("<C-q>", save .. to_term .. "a<C-c>" .. esc .. to_buff)
 
 -------------- JULIA --------------
 -- set_term_cmd_keymap("<leader>rj", {"julia", "%:t"})
+
+-------------- python / black / autocmd --------------
+vim.api.nvim_create_augroup("AutoFormat", {})
+
+vim.api.nvim_create_autocmd(
+  "BufWritePost",
+  {
+    pattern = "*.py",
+    group = "AutoFormat",
+    callback = function()
+      vim.cmd("silent !black --quiet %")
+      -- vim.cmd("edit")
+    end,
+  }
+)
