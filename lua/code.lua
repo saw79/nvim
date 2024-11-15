@@ -48,6 +48,7 @@ local function open_terminal()
   --local buf = vim.api.nvim_get_current_buf()
   --vim.g.term_chan_id = buf
   --print("Terminal Channel ID saved as:", vim.g.term_chan_id)
+  vim.cmd("setlocal sidescrolloff=0")
 
   -- go back to left split
   vim.cmd('execute \"normal \\<c-w>h\"')
