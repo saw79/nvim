@@ -12,7 +12,12 @@ local function on_attach(_, bufnr)
 end
 
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+  -- TODO consider this for more portable setup
+  --ensure_installed = {
+    --"pyright",
+  --},
+})
 
 lspconfig.lua_ls.setup{
   on_attach = on_attach,
@@ -31,10 +36,18 @@ lspconfig.lua_ls.setup{
   },
 }
 
+local venv_full = vim.fn.systemlist("poetry env info -p")[1]
+local venv_path = venv_full:match("(.*)/[^/]+")
+local venv_name = venv_full:match(".*/([^/]+)$")
+
+write_cfg_cmd = "echo '{ \"venv\": \"" .. venv_name .. "\" }' > pyrightconfig.json"
+vim.fn.system(write_cfg_cmd)
+
 lspconfig.pyright.setup{
   on_attach = on_attach,
   settings = {
     python = {
+      venvPath = venv_path,
       analysis = {
         autoImportCompletions = false,
         --diagnosticMode = "workspace",
