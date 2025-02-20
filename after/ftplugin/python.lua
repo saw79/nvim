@@ -36,7 +36,7 @@ end
 -- run current file file
 --set_term_cmd_keymap("<leader>rr", {"poetry run", "python", "%:t"})
 set_term_cmd_keymap("<leader>rr", {"python", "%:t"})
-set_term_cmd_keymap("<leader>rs", {"poetry shell"})
+set_term_cmd_keymap("<leader>ra", {"eval $(poetry env activate)"})
 
 -- python terminal
 --keymap("<leader>rp", save .. to_term .. "apoetry run python<cr>")
