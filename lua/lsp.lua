@@ -31,7 +31,7 @@ vim.lsp.config("pyright", {
       analysis = {
         autoImportCompletions = false,
         --diagnosticMode = "workspace",
-        --typeCheckingMode = "off",
+        typeCheckingMode = "off",
       }
     }
   }
