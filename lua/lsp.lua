@@ -25,6 +25,7 @@ vim.lsp.config("luals", {
 
 vim.lsp.config("pyright", {
   cmd = { "pyright-langserver", "--stdio" },
+  filetypes = { "python" },
   root_markers = { "pyproject.toml" },
   settings = {
     python = {
