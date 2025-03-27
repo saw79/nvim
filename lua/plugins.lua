@@ -15,43 +15,122 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
 
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    ---- VISUAL ----
+    -- Colorscheme
+    --"mhartington/oceanic-next",
+    --"sainnhe/sonokai",
+    --"catppuccin/nvim",
+    --"EdenEast/nightfox.nvim",
+    "rebelot/kanagawa.nvim",
 
-    -- colorschemes
-    { "mhartington/oceanic-next" },
-    { "sainnhe/sonokai" },
-    { "catppuccin/nvim" },
-    { "rebelot/kanagawa.nvim" },
-    { "EdenEast/nightfox.nvim" },
+    -- Indent lines
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        local highlight = {
+            "RainbowRed",
+            "RainbowYellow",
+            "RainbowBlue",
+            "RainbowOrange",
+            "RainbowGreen",
+            "RainbowViolet",
+            "RainbowCyan",
+        }
 
-    -- indent lines
-    { "lukas-reineke/indent-blankline.nvim" },
+        local hooks = require "ibl.hooks"
+        -- create the highlight groups in the highlight setup hook, so they are reset
+        -- every time the colorscheme changes
+        hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+            vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#7A3A41" })  -- #E06C75
+            vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#8F713E" })  -- #E5C07B
+            vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#315F87" })  -- #61AFEF
+            vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#805A3A" })  -- #D19A66
+            vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#4F6E49" })  -- #98C379
+            vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#713F8A" })  -- #C678DD
+            vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#2E646C" })  -- #56B6C2
+        end)
 
-    ---- CORE ----
+        require("ibl").setup({ indent = { highlight = highlight } })
+      end
+    },
 
-    { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope.nvim" },
+    -- Telescope
+    {
+      "nvim-telescope/telescope.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        local builtin = require('telescope.builtin')
+        --vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+        vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Telescope git files' })
+        vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+        vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+        vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+      end
+    },
 
-    ---- CODING ----
+    -- Completion
+    {
+      "saghen/blink.cmp",
+      version = "1.*",
 
-    -- cmp plugins
-    { "hrsh7th/nvim-cmp" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/cmp-nvim-lsp" },
-    { "L3MON4D3/LuaSnip" },
+      ---@module "blink.cmp"
+      ---@module 'blink.cmp'
+      ---@type blink.cmp.Config
+      opts = {
+        -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+        -- 'super-tab' for mappings similar to vscode (tab to accept)
+        -- 'enter' for enter to accept
+        -- 'none' for no mappings
+        --
+        -- All presets have the following mappings:
+        -- C-space: Open menu or open docs if already open
+        -- C-n/C-p or Up/Down: Select next/previous item
+        -- C-e: Hide menu
+        -- C-k: Toggle signature help (if signature.enabled = true)
+        --
+        -- See :h blink-cmp-config-keymap for defining your own keymap
+        keymap = { preset = "super-tab" },
 
-    -- LSP
-    { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
+        appearance = {
+          -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+          -- Adjusts spacing to ensure icons are aligned
+          nerd_font_variant = 'mono'
+        },
+
+        completion = {
+          documentation = { auto_show = true },
+          accept = { auto_brackets = { enabled = false } },
+          menu = {
+            draw = {
+              columns = {
+                { "kind_icon", "label", gap = 2 },
+                { "kind" },
+              },
+            },
+          },
+        },
+
+        -- Default list of enabled providers defined so that you can extend it
+        -- elsewhere in your config, without redefining it, due to `opts_extend`
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+
+        -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+        -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+        -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+        --
+        -- See the fuzzy documentation for more information
+        fuzzy = {
+          implementation = "prefer_rust_with_warning",
+          sorts = { "exact", "score", "sort_text" },
+        },
+      },
+      opts_extend = { "sources.default" }
+    },
 
     -- CSV
     --{ "hat0uma/csvview.nvim", parser = { async_chunksize = 50 } },
@@ -86,3 +165,5 @@ require("lazy").setup({
   -- consider installing luarocks
   rocks = { enabled = false },
 })
+
+vim.cmd.colorscheme("kanagawa")

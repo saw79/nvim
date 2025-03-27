@@ -19,7 +19,12 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- popup  menu height (default=0)
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-vim.opt.pumheight = 10
+--vim.opt.completeopt = { "menu", "menuone", "noselect" }
+--vim.opt.pumheight = 10
 
 vim.api.nvim_command("autocmd VimResized * wincmd =")
+
+-- guibg=#123456 for 24-bit mode
+vim.cmd("hi MatchParen ctermbg=240")
+
+vim.o.winborder = "rounded"

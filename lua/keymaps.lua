@@ -39,7 +39,7 @@ keymap("n", "<leader>-", "mz<S-v><C-x>`z", opts)
 -- misc
 keymap("n", "<leader>ch", ":noh<cr>", opts)
 
-keymap("n", "<leader>ei", ":e ~/.config/nvim/", { noremap = true })
+keymap("n", "<leader>ec", ":e ~/.config/nvim/", { noremap = true })
 keymap("n", "<leader>en", ":e ~/notes.md<cr>", opts)
 
 --------------------------------------------------------------------------------
