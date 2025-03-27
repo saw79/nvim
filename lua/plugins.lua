@@ -24,7 +24,14 @@ require("lazy").setup({
     --"sainnhe/sonokai",
     --"catppuccin/nvim",
     --"EdenEast/nightfox.nvim",
-    "rebelot/kanagawa.nvim",
+    {
+      "rebelot/kanagawa.nvim",
+      config = function(plugin, opts)
+        require("kanagawa").setup(opts)
+        vim.cmd("colorscheme kanagawa")
+        vim.cmd("hi WinSeparator guifg=#008888")
+      end
+    },
 
     -- Indent lines
     {
@@ -165,5 +172,3 @@ require("lazy").setup({
   -- consider installing luarocks
   rocks = { enabled = false },
 })
-
-vim.cmd.colorscheme("kanagawa")
