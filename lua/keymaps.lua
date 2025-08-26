@@ -42,6 +42,11 @@ keymap("n", "<leader>ch", ":noh<cr>", opts)
 keymap("n", "<leader>ec", ":e ~/.config/nvim/", { noremap = true })
 keymap("n", "<leader>en", ":e ~/notes.md<cr>", opts)
 
+-- select all
+keymap("n", "<leader>ay", "gg<S-v>G\"+yg;", opts)
+-- paste all
+keymap("n", "<leader>ap", "gg<S-v>G\"+pg;", opts)
+
 --------------------------------------------------------------------------------
 -- Navigation
 --------------------------------------------------------------------------------
