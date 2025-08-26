@@ -39,6 +39,8 @@ vim.lsp.config("pyright", {
 })
 
 vim.lsp.config("rust-analyzer", {
+  cmd = { "rust-analyzer" },
+  filetypes = { "rust" },
 })
 
 vim.lsp.enable({
