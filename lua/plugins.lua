@@ -16,6 +16,25 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
+local is_inside_work_tree = {}
+
+function project_files()
+  local opts = {}
+
+  local cwd = vim.fn.getcwd()
+  if is_inside_work_tree[cwd] == nil then
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    is_inside_work_tree[cwd] = vim.v.shell_error == 0
+  end
+
+  if is_inside_work_tree[cwd] then
+    require("telescope.builtin").git_files(opts)
+  else
+    require("telescope.builtin").find_files(opts)
+  end
+end
+
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
@@ -71,7 +90,8 @@ require("lazy").setup({
       config = function()
         local builtin = require('telescope.builtin')
         --vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-        vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Telescope git files' })
+        --vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Telescope git files' })
+        vim.keymap.set('n', '<leader>ff', project_files, { desc = 'Telescope files' })
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
         vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
