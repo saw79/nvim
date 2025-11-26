@@ -92,9 +92,11 @@ keymap("<C-q>", save .. to_term .. "a<C-c>" .. esc .. to_buff)
 -------------- JULIA --------------
 -- set_term_cmd_keymap("<leader>rj", {"julia", "%:t"})
 
--------------- python / black / autocmd --------------
+-------------- autoformatting --------------
+
 vim.api.nvim_create_augroup("AutoFormat", {})
 
+-- python
 vim.api.nvim_create_autocmd(
   "BufWritePost",
   {
@@ -103,6 +105,18 @@ vim.api.nvim_create_autocmd(
     callback = function()
       vim.cmd("silent !black --quiet %")
       -- vim.cmd("edit")
+    end,
+  }
+)
+
+-- C++
+vim.api.nvim_create_autocmd(
+  "BufWritePost",
+  {
+    pattern = { "*.cpp", "*.cc", "*.c", "*.h", "*.hpp" },
+    group = "AutoFormat",
+    callback = function()
+      vim.cmd("silent !clang-format -i -style=Google %")
     end,
   }
 )

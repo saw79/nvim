@@ -43,8 +43,14 @@ vim.lsp.config("rust-analyzer", {
   filetypes = { "rust" },
 })
 
+vim.lsp.config("clangd", {
+  cmd = { "clangd" },
+  filetypes = { "cpp" },
+})
+
 vim.lsp.enable({
   "luals",
   "pyright",
   "rust-analyzer",
+  "clangd",
 })
