@@ -34,16 +34,11 @@ local function python_block_comment()
 end
 
 -- run current file file
---set_term_cmd_keymap("<leader>rr", {"poetry run", "python", "%:t"})
 set_term_cmd_keymap("<leader>rr", {"python", "%:t"})
-set_term_cmd_keymap("<leader>ra", {"eval $(poetry env activate)"})
+set_term_cmd_keymap("<leader>ra", {"source .venv/bin/activate"})
 
 -- python terminal
---keymap("<leader>rp", save .. to_term .. "apoetry run python<cr>")
---set_term_cmd_keymap("<leader>rp", {"poetry run python"})
 set_term_cmd_keymap("<leader>rp", {"python"})
---set_term_cmd_keymap("<leader>rs", {"poetry run", "ipython"})
---keymap("<leader>rq", save .. to_term .. "aquit()<cr>")
 set_term_cmd_keymap("<leader>rq", {"quit()"})
 
 -- commenting
