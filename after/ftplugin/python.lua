@@ -35,7 +35,7 @@ end
 
 -- run current file file
 set_term_cmd_keymap("<leader>rr", {"python", "%:t"})
-set_term_cmd_keymap("<leader>ra", {"source .venv/bin/activate"})
+set_term_cmd_keymap("<leader>ra", {"ua"})
 
 -- python terminal
 set_term_cmd_keymap("<leader>rp", {"python"})
