@@ -33,8 +33,18 @@ vim.lsp.config("pyright", {
         autoImportCompletions = false,
         --diagnosticMode = "workspace",
         typeCheckingMode = "off",
-      }
-    }
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { '*' },
+      },
+    },
+  },
+})
+
+vim.lsp.config("ruff", {
+  cmd = { "ruff", "server" },
+  filetypes = { "python" },
+  root_markers = { "pyproject.toml" },
+  settings = {
   }
 })
 
@@ -51,6 +61,7 @@ vim.lsp.config("clangd", {
 vim.lsp.enable({
   "luals",
   "pyright",
+  "ruff",
   "rust-analyzer",
   "clangd",
 })
