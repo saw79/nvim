@@ -53,6 +53,9 @@ vim.api.nvim_buf_set_keymap(0, "v", "<leader>jj", "^o^<S-v><C-v>lx", opts)
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>do", "obreakpoint()<Esc>", opts)
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>dO", "Obreakpoint()<Esc>", opts)
 
+-- add noqa: F401 at end of line
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>nq", "A  # noqa: F401<Esc>", opts)
+
 local function is_line_cell_delimiter(line)
   return line:sub(1, 4) == "# %%"
 end
