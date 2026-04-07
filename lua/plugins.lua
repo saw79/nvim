@@ -1,7 +1,9 @@
 local gh = function(x) return "https://github.com/" .. x end
 
 vim.pack.add({
-  { src = gh("rebelot/kanagawa.nvim") },
+  --{ src = gh("rebelot/kanagawa.nvim") },
+  --{ src = gh("folke/tokyonight.nvim") },
+  { src = gh("navarasu/onedark.nvim") },
   { src = gh("lukas-reineke/indent-blankline.nvim") },
   { src = gh("nvim-lua/plenary.nvim") }, -- dep for telescope
   { src = gh("nvim-telescope/telescope.nvim") },
@@ -9,11 +11,14 @@ vim.pack.add({
   { src = gh("hat0uma/csvview.nvim") },
 })
 
--- --------------
--- setup kanagawa
--- --------------
+-- -----------------
+-- setup colorscheme
+-- -----------------
 
-vim.cmd("colorscheme kanagawa")
+require("onedark").setup({ style = "darker" })
+vim.cmd("colorscheme onedark")
+
+-- Make vertical split separator a nice cyan
 vim.cmd("hi WinSeparator guifg=#008888")
 
 -- ----------------------
@@ -48,6 +53,8 @@ require("ibl").setup({ indent = { highlight = highlight } })
 -- setup telescope
 -- ---------------
 
+local ts_builtin = require('telescope.builtin')
+
 local is_inside_work_tree = {}
 
 function ts_project_files()
@@ -60,13 +67,11 @@ function ts_project_files()
   end
 
   if is_inside_work_tree[cwd] then
-    require("telescope.builtin").git_files(opts)
+    ts_builtin.git_files(opts)
   else
-    require("telescope.builtin").find_files(opts)
+    ts_builtin.find_files(opts)
   end
 end
-
-local ts_builtin = require('telescope.builtin')
 
 --vim.keymap.set('n', '<leader>ff', ts_builtin.find_files, { desc = 'Telescope find files' })
 --vim.keymap.set('n', '<leader>ff', ts_builtin.git_files, { desc = 'Telescope git files' })
