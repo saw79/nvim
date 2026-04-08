@@ -55,28 +55,9 @@ require("ibl").setup({ indent = { highlight = highlight } })
 
 local ts_builtin = require('telescope.builtin')
 
-local is_inside_work_tree = {}
-
-function ts_project_files()
-  local opts = {}
-
-  local cwd = vim.fn.getcwd()
-  if is_inside_work_tree[cwd] == nil then
-    vim.fn.system("git rev-parse --is-inside-work-tree")
-    is_inside_work_tree[cwd] = vim.v.shell_error == 0
-  end
-
-  if is_inside_work_tree[cwd] then
-    ts_builtin.git_files(opts)
-  else
-    ts_builtin.find_files(opts)
-  end
-end
-
---vim.keymap.set('n', '<leader>ff', ts_builtin.find_files, { desc = 'Telescope find files' })
---vim.keymap.set('n', '<leader>ff', ts_builtin.git_files, { desc = 'Telescope git files' })
-vim.keymap.set('n', '<leader>ff', ts_project_files, { desc = 'Telescope files' })
-vim.keymap.set('n', '<leader>fg', ts_builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>ff', ts_builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', ts_builtin.git_files, { desc = 'Telescope git files' })
+vim.keymap.set('n', '<leader>ft', ts_builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', ts_builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', ts_builtin.help_tags, { desc = 'Telescope help tags' })
 
