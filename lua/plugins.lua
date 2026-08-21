@@ -53,7 +53,14 @@ require("ibl").setup({ indent = { highlight = highlight } })
 -- setup telescope
 -- ---------------
 
+local ts = require('telescope')
 local ts_builtin = require('telescope.builtin')
+
+ts.setup({
+  defaults = {
+    path_display = { "filename_first" },
+  }
+})
 
 vim.keymap.set('n', '<leader>ff', ts_builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', ts_builtin.git_files, { desc = 'Telescope git files' })
