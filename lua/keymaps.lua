@@ -51,6 +51,9 @@ keymap("n", "<leader>ap", "gg<S-v>G\"+pg;", opts)
 -- Navigation
 --------------------------------------------------------------------------------
 
+-- reload current file (e.g., if AI agent modifies it
+keymap("n", "<leader><leader>", ":e<cr>", opts)
+
 -- change cwd directory to current file location
 keymap("n", "<leader>cde", ":cd %:h<cr>", opts)
 vim.keymap.set(
